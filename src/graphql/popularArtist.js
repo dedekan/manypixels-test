@@ -1,15 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const POPULAR_ARTIST = gql`
-  query GetPopularArtists($size: Number!) {
+  query GetPopularArtists($size: Int) {
     popular_artists(size: $size) {
       artists {
+        id
         name
         imageUrl
         bio
         initials
-        meta
-        gender
         birthday
         artworks {
           title
