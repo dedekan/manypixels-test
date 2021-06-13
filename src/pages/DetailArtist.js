@@ -13,7 +13,7 @@ import {
 import { Row, Column } from "../components/Layout";
 import { DETAIL_ARTIST } from "../graphql/detailArtist";
 
-export function DetailArtist() {
+export function PageDetailArtist() {
   const { id } = useParams();
   const { loading, error, data } = useQuery(DETAIL_ARTIST, {
     variables: {
