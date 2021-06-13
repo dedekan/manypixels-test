@@ -5,10 +5,8 @@ const httpLink = createHttpLink({
   uri: "https://metaphysics-production.artsy.net/",
 });
 
-const token =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGM0MzRhZDUwZTM4ZTAwMTM4N2M4NmEiLCJzYWx0X2hhc2giOiJkODM3MjUzMzJhZDhhNjAyMjUwYzA2NjI4ZTc4YzNhMSIsInJvbGVzIjoidXNlciIsInBhcnRuZXJfaWRzIjpbXSwib3RwIjpmYWxzZSwiZXhwIjoxNjI4NzkyNzE4LCJpYXQiOjE2MjM2MDg3MTgsImF1ZCI6IjVkNDA5OTZlNmU2MDQ5MDAwNzQ5MGZhMiIsImlzcyI6IkdyYXZpdHkiLCJqdGkiOiI2MGM2NGQ4ZWE4ZmZiZTAwMTM0YTEzYTcifQ.0SGJRekqS-EhvOuBEb79eh0wgVFGe87DucwCXri6LVc";
-
-const userId = "60c434ad50e38e001387c86a";
+const token = process.env.REACT_APP_ARTSY_TOKEN;
+const userId = process.env.REACT_APP_ARTSY_USER_ID;
 
 const authLink = setContext((_, { headers }) => {
   return {
@@ -25,8 +23,4 @@ const authLink = setContext((_, { headers }) => {
 export default new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  // credentials: "include",
-  // fetchOptions: {
-  //   mode: "cors",
-  // },
 });
