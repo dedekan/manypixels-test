@@ -9,9 +9,10 @@ import {
   Avatar,
   Button,
   Image,
+  AlertTitle,
 } from "@chakra-ui/react";
 import { Row, Column } from "../components/Layout";
-import { DETAIL_ARTIST } from "../graphql/detailArtist";
+import { DETAIL_ARTIST } from "../graphql/Artist";
 
 export function PageDetailArtist() {
   const { id } = useParams();
@@ -23,7 +24,13 @@ export function PageDetailArtist() {
 
   if (loading) {
     return (
-      <Box d="flex" flexDir="row" alignItems="center" justifyContent="center" height="100vh">
+      <Box
+        d="flex"
+        flexDir="row"
+        alignItems="center"
+        justifyContent="center"
+        height="100vh"
+      >
         <Spinner />
       </Box>
     );
@@ -32,7 +39,8 @@ export function PageDetailArtist() {
   if (error) {
     return (
       <Alert>
-        <AlertDescription>{error}</AlertDescription>
+        <AlertTitle>{error.name}</AlertTitle>
+        <AlertDescription>{error.message}</AlertDescription>
       </Alert>
     );
   }

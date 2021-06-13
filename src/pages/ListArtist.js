@@ -1,11 +1,17 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-import { Spinner, Box, Text } from "@chakra-ui/react";
+import {
+  Spinner,
+  Box,
+  Text,
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@chakra-ui/react";
 
-import { POPULAR_ARTIST } from "../graphql/popularArtist";
+import { POPULAR_ARTIST } from "../graphql/Artist";
 
 import { ArtistCard, ArtistImage, ArtistSummary } from "../components/Artist";
-import { Alert, AlertContent } from "../components/Alert";
 import { Column, Row } from "../components/Layout";
 
 function ListArtist() {
@@ -34,7 +40,8 @@ function ListArtist() {
   if (error) {
     return (
       <Alert>
-        <AlertContent>{error}</AlertContent>
+        <AlertTitle>{error.name}</AlertTitle>
+        <AlertDescription>{error.message}</AlertDescription>
       </Alert>
     );
   }

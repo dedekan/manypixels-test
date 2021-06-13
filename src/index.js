@@ -3,32 +3,15 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
-import { Global, css } from "@emotion/react";
+import { Global } from "@emotion/react";
 
 import graphqlClient from "./config/GraphQl";
+import globalStyle from "./config/globalStyle";
 
 import reportWebVitals from "./reportWebVitals";
 
 import { PageListArtist } from "./pages/ListArtist";
 import { PageDetailArtist } from "./pages/DetailArtist";
-
-const globalStyle = css`
-  @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
-
-  html,
-  body {
-    height: 100%;
-    width: 100%;
-  }
-
-  body {
-    background-color: #efefef;
-  }
-
-  * {
-    font-family: "Source Sans Pro", Inter, sans-serif;
-  }
-`;
 
 ReactDOM.render(
   <React.StrictMode>

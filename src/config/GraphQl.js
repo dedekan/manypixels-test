@@ -2,20 +2,22 @@ import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: "https://metaphysics-staging.artsy.net",
+  uri: "https://metaphysics-production.artsy.net/",
 });
 
 const token =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGM0Njc1OGMyNDYzNDAwMGZkMDEyMzgiLCJzYWx0X2hhc2giOiI3ZDk1ODRiNTA3MmUwNWZiZmYyOWM0NDcyNzJhMWVjZiIsInJvbGVzIjoidXNlciIsInBhcnRuZXJfaWRzIjpbXSwib3RwIjpmYWxzZSwiZXhwIjoxNjI4NjY4MjQ4LCJpYXQiOjE2MjM0ODQyNDgsImF1ZCI6IjVkNDA5OTZlNmU2MDQ5MDAwNzQ5MGZhMiIsImlzcyI6IkdyYXZpdHkiLCJqdGkiOiI2MGM0Njc1OGMyNDYzNDAwMGZkMDEyM2IifQ.81krGgAkMFb7z1oXfzGAugk1W99KwJx3haSo3c1dABk";
+  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGM0MzRhZDUwZTM4ZTAwMTM4N2M4NmEiLCJzYWx0X2hhc2giOiJkODM3MjUzMzJhZDhhNjAyMjUwYzA2NjI4ZTc4YzNhMSIsInJvbGVzIjoidXNlciIsInBhcnRuZXJfaWRzIjpbXSwib3RwIjpmYWxzZSwiZXhwIjoxNjI4NzkyNzE4LCJpYXQiOjE2MjM2MDg3MTgsImF1ZCI6IjVkNDA5OTZlNmU2MDQ5MDAwNzQ5MGZhMiIsImlzcyI6IkdyYXZpdHkiLCJqdGkiOiI2MGM2NGQ4ZWE4ZmZiZTAwMTM0YTEzYTcifQ.0SGJRekqS-EhvOuBEb79eh0wgVFGe87DucwCXri6LVc";
 
-const userId = "60c46758c24634000fd01238";
+const userId = "60c434ad50e38e001387c86a";
 
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
+      "Access-Control-Allow-Origin": "*",
       "x-access-token": token,
       "x-user-id": userId,
+      Authorization: `Bearer ${token}`,
     },
   };
 });
@@ -23,4 +25,8 @@ const authLink = setContext((_, { headers }) => {
 export default new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  // credentials: "include",
+  // fetchOptions: {
+  //   mode: "cors",
+  // },
 });

@@ -1,12 +1,6 @@
-import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Box } from "@chakra-ui/react";
 import { Children, cloneElement, isValidElement } from "react";
-
-export const Layout = styled.div`
-  height: 100%;
-  width: 100%;
-`;
 
 export const Column = ({
   md,
@@ -100,14 +94,3 @@ export const Row = ({
     </Box>
   );
 };
-
-export const Header = styled.h1`
-  display: block;
-  padding-top: 36px;
-  padding-bottom: 36px;
-  font-size: 36px;
-  background-color: transparent;
-  color: black;
-  font-weight: 600;
-  text-align: center;
-`;
