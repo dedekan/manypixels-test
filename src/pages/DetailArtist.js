@@ -55,6 +55,10 @@ export function PageDetailArtist() {
               {data.artist.name}
             </Text>
             <Text>{data.artist.bio}</Text>
+            <Text>
+              {data.artist.gender} - {data.artist.hometown} -{" "}
+              {data.artist.nationality}
+            </Text>
           </Box>
         </Box>
         <Box ml="auto">
@@ -65,7 +69,7 @@ export function PageDetailArtist() {
             colorScheme="orange"
             rounded="full"
           >
-            Back to List
+            &larr; Back to List
           </Button>
         </Box>
       </Box>

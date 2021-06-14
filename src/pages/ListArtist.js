@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
   Spinner,
   Box,
-  Text,
   Alert,
   AlertDescription,
   AlertTitle,
@@ -12,14 +11,13 @@ import {
 import { POPULAR_ARTIST } from "../graphql/Artist";
 
 import { ArtistCard, ArtistImage, ArtistSummary } from "../components/Artist";
-import { Column, Row } from "../components/Layout";
 
-function ListArtist() {
+export function PageListArtist() {
   const [page] = useState(1);
 
   const { loading, error, data } = useQuery(POPULAR_ARTIST, {
     variables: {
-      size: page * 9,
+      size: page * 12,
     },
   });
 
@@ -47,34 +45,15 @@ function ListArtist() {
   }
 
   return (
-    <Row>
+    <Box d="flex" flexDir="row" flexWrap="wrap">
       {data.popular_artists?.artists?.map((artist) => (
-        <Column key={artist.id} lg={8}>
+        <Box key={artist.id} w="full" maxW="25%">
           <ArtistCard id={artist.id}>
-            <ArtistImage src={artist.imageUrl} />
+            <ArtistImage src={artist.imageUrl} name={artist.name} />
             <ArtistSummary name={artist.name} />
           </ArtistCard>
-        </Column>
+        </Box>
       ))}
-    </Row>
-  );
-}
-
-export function PageListArtist() {
-  return (
-    <Box maxW={["container.sm", "container.md", "container.lg"]} mx="auto">
-      <Text
-        fontSize="3xl"
-        textAlign="center"
-        userSelect="none"
-        py="35px"
-        textTransform="uppercase"
-        fontWeight="600"
-        letterSpacing={1.3}
-      >
-        Featured Artist
-      </Text>
-      <ListArtist />
     </Box>
   );
 }

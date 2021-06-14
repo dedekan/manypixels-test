@@ -6,14 +6,11 @@ export const DETAIL_ARTIST = gql`
       name
       imageUrl
       bio
-      initials
       gender
-      birthday
       hometown
       nationality
       artworks {
         title
-        date
         imageUrl
       }
     }
@@ -27,12 +24,6 @@ export const POPULAR_ARTIST = gql`
         id
         name
         imageUrl
-        bio
-        initials
-        birthday
-        artworks {
-          title
-        }
       }
     }
   }

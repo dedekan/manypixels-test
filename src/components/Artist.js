@@ -4,53 +4,68 @@ import { Box, Image, Text } from "@chakra-ui/react";
 export function ArtistCard({ children, id }) {
   return (
     <Box
-      borderWidth={4}
-      borderStyle="solid"
-      borderColor="transparent"
       as={Link}
       to={`/profile/${id}`}
-      mb={4}
       d="block"
       cursor="pointer"
-      _hover={{
-        borderColor: "blue.600",
-      }}
-      borderRadius={4}
       userSelect="none"
       transition="0.2s all"
+      pos="relative"
+      _hover={{
+        // '& .artist-image': {
+        //   opacity: 0.5
+        // },
+        "& .artist-content": {
+          opacity: 1,
+          backgroundColor: "rgba(0,0,0,0.7)",
+        },
+      }}
     >
       {children}
     </Box>
   );
 }
 
-export function ArtistImage({ src }) {
-  return <Image src={src} mb={2} borderRadius={2} mx="auto" />;
+export function ArtistImage({ src, name }) {
+  return (
+    <Image
+      className="artist-image"
+      src={src}
+      alt={name}
+      w="full"
+      borderRadius={2}
+      mx="auto"
+      opacity={1}
+    />
+  );
 }
 
 export function ArtistSummary({ name }) {
   return (
-    <Box as="span" d="flex" flexDir="row" alignItems="center" px={2} py={2}>
-      <Box as="span" d="block">
-        <Text as="span" d="block">
-          {name}
-        </Text>
-      </Box>
-      <Box as="span" d="block" ml="auto">
-        <Box
-          as="span"
-          d="inline-block"
-          borderRadius={4}
-          px={4}
-          py={1}
-          borderWidth={1}
-          borderColor="blue.600"
-          borderStyle="solid"
-          fontSize="sm"
-        >
-          See Profile
-        </Box>
-      </Box>
+    <Box
+      className="artist-content"
+      pos="absolute"
+      top="0"
+      left="0"
+      width="full"
+      height="full"
+      px={3}
+      opacity={0}
+      transition="0.2s all"
+      d="flex"
+      flexDir="row"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Text
+        as="span"
+        d="block"
+        textAlign="center"
+        color="white"
+        fontWeight="600"
+      >
+        {name} &rarr;
+      </Text>
     </Box>
   );
 }
