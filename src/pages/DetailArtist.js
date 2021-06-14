@@ -46,7 +46,7 @@ export function PageDetailArtist() {
   }
 
   return (
-    <Box maxW={["container.sm", "container.md", "container.lg"]} mx="auto">
+    <Box maxW={["container.sm", "container.md", "container.lg"]} mx="auto" px="15px">
       <Box d="flex" flexDir="row" py={8}>
         <Box d="flex" flexDir="row" userSelect="none">
           <Avatar src={data.artist.imageUrl} size="lg" />
@@ -79,7 +79,7 @@ export function PageDetailArtist() {
         </Text>
         <Row totalColumn={30}>
           {data.artist?.artworks?.map((artwork) => (
-            <Column key={artwork.id} lg={6}>
+            <Column key={artwork.id} lg={6} md={6} sm={4}>
               <Box mb={4}>
                 <Image src={artwork.imageUrl} mb={2} borderRadius={4} />
                 <Text>{artwork.title}</Text>
